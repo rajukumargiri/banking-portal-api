@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<String> registerUser(User user) {
+        log.info("registerUser Request");
         validationUtil.validateNewUser(user);
         encodePassword(user);
         val savedUser = saveUserWithAccount(user);
@@ -63,6 +64,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<String> updateUser(User updatedUser) {
+        log.info("updateUser Request");
         val accountNumber = LoggedinUser.getAccountNumber();
         authenticateUser(accountNumber, updatedUser.getPassword());
         val existingUser = getUserByAccountNumber(accountNumber);
@@ -74,6 +76,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean resetPassword(User user, String newPassword) {
+        log.info("resetPassword Request");
         try {
             user.setPassword(passwordEncoder.encode(newPassword));
             userRepository.save(user);
@@ -101,6 +104,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByIdentifier(String identifier) {
+        log.info("getUserByIdentifier Request");
         User user = null;
 
         if (validationUtil.doesEmailExist(identifier)) {
@@ -117,6 +121,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByAccountNumber(String accountNo) {
+        log.info("getUserByAccountNumber Request");
         return userRepository.findByAccountAccountNumber(accountNo).orElseThrow(
                 () -> new UserInvalidException(
                         String.format(ApiMessages.USER_NOT_FOUND_BY_ACCOUNT.getMessage(), accountNo)));
@@ -124,6 +129,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
+        log.info("getUserByEmail Request");
         return userRepository.findByEmail(email).orElseThrow(
                 () -> new UserInvalidException(String.format(ApiMessages.USER_NOT_FOUND_BY_EMAIL.getMessage(), email)));
     }
