@@ -35,6 +35,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account createAccount(User user) {
+        log.info("createAccount request");
         val account = new Account();
         account.setAccountNumber(generateUniqueAccountNumber());
         account.setBalance(0.0);
@@ -63,6 +64,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private void validatePin(String accountNumber, String pin) {
+        log.info("validatePin request");
         val account = accountRepository.findByAccountNumber(accountNumber);
         if (account == null) {
             throw new NotFoundException(ApiMessages.ACCOUNT_NOT_FOUND.getMessage());
@@ -82,6 +84,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private void validatePassword(String accountNumber, String password) {
+        log.info("validatePassword request");
         val account = accountRepository.findByAccountNumber(accountNumber);
         if (account == null) {
             throw new NotFoundException(ApiMessages.ACCOUNT_NOT_FOUND.getMessage());
@@ -139,6 +142,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private void validateAmount(double amount) {
+        log.info("validateAmount request");
         if (amount <= 0) {
             throw new InvalidAmountException(ApiMessages.AMOUNT_NEGATIVE_ERROR.getMessage());
         }
@@ -154,6 +158,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void cashDeposit(String accountNumber, String pin, double amount) {
+        log.info("cashDeposit request");
         validatePin(accountNumber, pin);
         validateAmount(amount);
 
@@ -173,6 +178,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void cashWithdrawal(String accountNumber, String pin, double amount) {
+        log.info("cashWithdrawal request");
         validatePin(accountNumber, pin);
         validateAmount(amount);
 
@@ -196,6 +202,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void fundTransfer(String sourceAccountNumber, String targetAccountNumber, String pin, double amount) {
+        log.info("fundTransfer request");
         validatePin(sourceAccountNumber, pin);
         validateAmount(amount);
 
