@@ -19,6 +19,24 @@ The Banking Portal API provides a set of endpoints for managing user accounts, f
 2. Configure MySQL: Set up a MySQL database, create a copy of `application.properties.sample`, rename it `application.properties`, and update the properties as needed.
 3. Build and run the project: `mvn spring-boot:run`
 
+## Deployment steps to OCP
+
+1. Connect to your OCP cluster either via Web OC CLI or local OC CLI using **copy login command** from right top drop down.
+  
+
+1. Once connected navigate to the project space:
+   Run below command :
+
+   oc new-app <YOUR_GIT_URL> --name=ocphackathon-api
+
+   This command will create you buildConfig.yaml, deploymeny.yaml and servive.yaml
+
+   buildconfig.yaml	: Builds an image from the source code (Git, Dockerfile, binary).
+   
+   deployment.yaml : Deploys the built image as a running container in OpenShift.
+   
+   service.yaml	: Exposes the deployment inside OpenShift as a network service.
+
 
 ## Error Handling
 
