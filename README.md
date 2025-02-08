@@ -6,6 +6,7 @@ The Banking Portal API provides a set of endpoints for managing user accounts, f
 
 ## Features
 
+
 - User Registration: Users can register by providing their details, such as name, email, address, and phone number.
 - PIN Management: Users can create and update their PINs for added security.
 - Cash Deposit and Withdrawal: Users can deposit and withdraw cash from their accounts.
