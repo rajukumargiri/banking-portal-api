@@ -16,10 +16,11 @@ The Banking Portal API provides a set of endpoints for managing user accounts, f
 ## Installation and Setup
 
 1. Navigate to the project folder: `cd banking-portal-api`
-2. Configure MySQL: Set up a MySQL database, create a copy of `application.properties.sample`, rename it `application.properties`, and update the properties as needed.
-3. Build and run the project: `mvn spring-boot:run`
+2. **create a copy of `application.properties.sample`, rename it `application.properties`.**
+3. You can build and run the project locally : `mvn spring-boot:run`
 
 ## Deployment steps to OCP
+
 
 1. Connect to your OCP cluster either via Web OC CLI or local OC CLI using **copy login command** from right top drop down.
   
